@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디플이 조졌어요!</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .grid-cell {
+    width: 100px;
+    height: 100px;
+  }
+
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="min-h-screen flex flex-col items-center justify-center">
+  <h1 class="text-4xl font-bold text-orange-500 mb-4">디플이 조졌어요</h1>
+  <h2 class="text-2xl mb-8">디코 플레이스 시즌3이 조진 이후로 시간이 얼마나 지났는지 확인해 보세요!</h2>
+  <div class="text-center mb-4">
+    <p></p>
+    <p></p>
+  </div>
+  <div id="timePassed" class="text-5xl font-mono">
+    지금까지 00:00:00:00.000 지났어요
+  </div>
+</div>
+
+<script>
+  const startTime = new Date('2023-04-12T00:00:00+09:00'); // Korean Standard Time
+  const timePassedElement = document.getElementById('timePassed');
+
+  function updateTime() {
+    const now = new Date();
+    const timeDiff = now - startTime;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+    const milliseconds = timeDiff % 1000;
+
+    timePassedElement.textContent = `지금까지 ${days}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')} 지났어요`;
+  }
+
+  setInterval(updateTime, 1);
+</script>
+</body>
+</html>
