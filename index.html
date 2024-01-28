@@ -19,7 +19,7 @@
   <h1 class="text-4xl font-bold text-orange-500 mb-4">디플이 조졌어요</h1>
   <h2 class="text-2xl mb-8">디코 플레이스 시즌3이 조진 이후로 시간이 얼마나 지났는지 확인해 보세요!</h2>
   <div class="text-center mb-4">
-    <p></p>
+    <p id="visitCount" class="text-center">현재까지 <span id="count">0</span>번 해당 페이지를 방문하였습니다</p>
     <p></p>
   </div>
   <div id="timePassed" class="text-5xl font-mono">
@@ -28,6 +28,13 @@
 </div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    let diplevisitCount = localStorage.getItem('diplevisitCount') || 0;
+    diplevisitCount++;
+    localStorage.setItem('diplevisitCount', diplevisitCount);
+    document.getElementById('count').textContent = diplevisitCount;
+  });
+
   const startTime = new Date('2023-04-12T00:00:00+09:00'); // Korean Standard Time
   const timePassedElement = document.getElementById('timePassed');
 
